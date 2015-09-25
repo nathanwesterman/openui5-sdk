@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+
+
+
+
+<meta name="abstract" content=""/>
+<meta name="description" content=""/>
+
+<link rel="stylesheet" type="text/css" href="css/documentation.css"/>
+<title>ARIA Event Handling</title>
+<!--[if lte IE 7]><style>
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
+  <script src="../../resources/sap/ui/thirdparty/jquery.js"></script>
+    <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../resources/sap/ui/demokit/themes/base/highlight-query-terms.css" />
+    <script src="../../resources/sap/ui/demokit/js/google-code-prettify/run_prettify.js"></script>
+    <script src="../../resources/sap/ui/demokit/js/google-code-prettify/lang-css.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../resources/sap/ui/demokit/js/google-code-prettify/prettify.css" />
+  </head>
+<body class="sap_bluecrystal" id="loio79a9c51057864e7abc3faf0e7c3073c6">
+<div id="wrapper"><div id="container">
+<h1 class="title topictitle1">ARIA Event Handling</h1>
+<div class="body conbody"><p class="shortdesc"/>
+<div class="section"><div class="section_title">UI Updates</div><div type="UI Updates">
+			
+			<p class="p">In some cases an app needs to stay irresponsive for longer periods of time. This may be caused
+				by the app fetching data or updating the UI. In these cases, busy indicators are
+				shown to inform the user that the app is processing data.</p>
+
+			<p class="p">The affected regions of the UI should have the property <samp class="ph codeph">aria-live</samp> set to
+				"true". This informs the screen reader that the region's DOM structure is currently
+				subject to change and  therefore internal processing should be applied.</p>
+
+			<p class="p"/>
+
+		</div></div>
+<div class="section"><div class="section_title">Event Handling</div><div type="Event Handling">
+			
+			<p class="p">Accessible Events are designed as a signaling mechanism for screen readers. For example, when
+				parts of the UI update, either as a result of a direct user action (such as
+				performing a selection) or by software (such as “incoming mail” messages or popups).
+				Events like a dialog showing up or content updates of parts of the screen are
+				handled by assigning specific roles and properties of the UI elements (for example,
+				an HTML <samp class="ph codeph">&lt;input type=checkbox&gt;</samp> element, would need
+					<samp class="ph codeph">role=”dialog”</samp> or property <samp class="ph codeph">aria-live</samp> set
+				accordingly). Screen readers then listen to accessible events raised by browsers for
+				these UI parts and react accordingly.</p>
+
+		</div></div>
+</div>
+</div></div>
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+ var page_title="ARIA Event Handling";
+
+        if (page_title !='' &&
+        parent.document.title != null) {
+ parent.document.title =
+          page_title;
+ } 
+ var
+        anchor = document.getElementById(location.hash.substring(+1)); if (typeof (anchor)
+        !='undefined' && anchor !=null){
+        var top = anchor.getBoundingClientRect().top; } 
+//-->
+</SCRIPT>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+
+
+
+
+<meta name="abstract" content="Now that we have integrated the dialog, it's time to add some user interaction. The user will definitely want to close the dialog again at some point, so we add a button to close the dialog and assign an event handler."/>
+<meta name="description" content="Now that we have integrated the dialog, it's time to add some user interaction. The user will definitely want to close the dialog again at some point, so we add a button to close the dialog and assign an event handler."/>
+
+<link rel="stylesheet" type="text/css" href="css/documentation.css"/>
+<title>Step 17: Fragment Callbacks</title>
+<!--[if lte IE 7]><style>
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
+  <script src="../../resources/sap/ui/thirdparty/jquery.js"></script>
+    <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../resources/sap/ui/demokit/themes/base/highlight-query-terms.css" />
+    <script src="../../resources/sap/ui/demokit/js/google-code-prettify/run_prettify.js"></script>
+    <script src="../../resources/sap/ui/demokit/js/google-code-prettify/lang-css.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../resources/sap/ui/demokit/js/google-code-prettify/prettify.css" />
+  </head>
+<body class="sap_bluecrystal" id="loio354f98ed2b514ba9960556333428d35e">
+<div id="wrapper"><div id="container">
+<h1 class="title topictitle1">Step 17: Fragment Callbacks</h1>
+<div class="body conbody"><p class="shortdesc">Now that we have integrated the dialog, it's time to add some user interaction. The user
+		will definitely want to close the dialog again at some point, so we add a button to close
+		the dialog and assign an event handler.</p>
+<div class="section"><div class="section_title">Preview</div><div type="Preview">
+			
+			<div class="fig fignone" id="loio354f98ed2b514ba9960556333428d35e__fig_r1j_pst_mr"><div class="figcontainer"><img class="image" id="loio354f98ed2b514ba9960556333428d35e__image_gdf_jsq_xr" src="loio2a0aee6164b24340b0d34a0515c82f19_HiRes.png"/><div class="figcap">Figure 1:
+					The dialog now has an "OK" button</div></div></div>
+
+		</div></div>
+<div class="section">
+			<div class="section_title">Coding</div>
+			<p class="p">You can view and download all files in the <span class="ph uicontrol">Explored</span> app in the
+				demo kit <span class="ph">at
+					<a class="xref" target="_blank" href="../../explored.html#/sample/sap.m.tutorial.walkthrough.17/preview">Walkthrough - Step 17</a></span>.</p>
+
+			<div class="section_title">webapp/controller/HelloPanel.controller.js</div>
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint "><samp class="ph codeph">#!js</samp>
+sap.ui.define([
+   "sap/ui/core/mvc/Controller",
+   "sap/m/MessageToast"
+], function (Controller, MessageToast) {
+   "use strict";
+   return Controller.extend("sap.ui.demo.wt.controller.HelloPanel", {
+      onShowHello : function () {
+            …
+      },
+      _getDialog : function () {
+         // create dialog lazily
+         if (!this._oDialog) {
+            // create dialog via fragment factory
+            this._oDialog = sap.ui.xmlfragment("sap.ui.demo.wt.view.HelloDialog"<span class="ph emphasis emphasis">, this</span>);
+            // connect dialog to view (models, lifecycle)
+            this.getView().addDependent(this._oDialog);
+         }
+         return this._oDialog;
+      },
+      onOpenDialog : function () {
+         this._getDialog().open();
+      }<span class="ph emphasis emphasis">,
+      onCloseDialog : function () {
+         this._getDialog().close();
+      }</span>
+   });
+});</pre></div>
+
+			<p class="p">As previously described, fragments are pure UI reuse artifacts and do not have a
+				controller. The second parameter of the <samp class="ph codeph">sap.ui.xmlfragment </samp>function
+				is optional and allows passing in a reference to a (controller) object. For our
+				dialog we reference the <samp class="ph codeph">HelloPanel</samp> controller.</p>
+
+			<p class="p">The event handler function is put into the same controller file and it closes the
+				dialog by accessing the internal helper function that returns the dialog.</p>
+
+		</div>
+<div class="section"><div class="section_title">webapp/view/HelloDialog.fragment.xml</div><div type="webapp/view/HelloDialog.fragment.xml">
+			
+			<div class="div_pre_codeblock"><pre class="pre codeblock prettyprint "><samp class="ph codeph">#!xml</samp>
+&lt;core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core" &gt;
+   &lt;Dialog
+      title ="Hello {/recipient/name}"&gt;
+<span class="ph emphasis emphasis">      &lt;beginButton&gt;
+         &lt;Button
+            text="{i18n&gt;dialogCloseButtonText}"
+            press="onCloseDialog"/&gt;
+      &lt;/beginButton&gt;</span>
+   &lt;/Dialog&gt;
+&lt;/core:FragmentDefinition&gt;</pre></div>
+
+			<p class="p"> In the fragment definition, we add a button to the <samp class="ph codeph">beginButton</samp>
+				aggregation of the dialog. The press handler is referring to an event handler called
+					<samp class="ph codeph">onCloseDialog</samp>, and since we passed in the reference to the
+					<samp class="ph codeph">HelloPanel</samp> controller, the method will be invoked there when
+				the button is pressed. The term <samp class="ph codeph">begin</samp> indicates that this button
+				should be displayed before the content of the <samp class="ph codeph">endButton</samp>
+				aggregation. We use the terms <samp class="ph codeph">begin</samp> and <samp class="ph codeph">end</samp> as a
+				synonym to “left” and “right", but in right-to-left mode for specific languages the
+				order is switched. </p>
+
+		</div></div>
+</div>
+<div class="related-links"> 
+
+<div class="familylinks">
+<div class="parentlink"><br/>
+<strong>Parent topic: </strong><a class="link" href="3da5f4be63264db99f2e5b04c5e853db.html" title="In this tutorial we will introduce you to all major development paradigms of OpenUI5.">Walkthrough</a><br/>
+</div>
+<div class="previouslink"><br/>
+<strong>Previous: </strong><a class="link" href="4da72985139b4b83b5f1c1e0c0d2ed5a.html" title="Now we will add a dialog to our app. Dialogs are special, because they open on top of the regular app content and thus do not belong to a specific view. That means the dialog must be instantiated somewhere in the controller code, but since we want to stick with the declarative approach and create reusable artifacts to be as flexible as possible, we will create an XML fragment containing the dialog. Fragments are light-weight UI parts (UI subtrees) which can be reused but do not have any controller.">Step 16: Dialogs and Fragments</a><br/>
+</div>
+<div class="nextlink"><br/>
+<strong>Next: </strong><a class="link" href="776f7352807e4f82b18176c8fbdc0c56.html" title="Our dialog is still pretty much empty. Since OpenUI5 is shipped with a large icon font that contains more than 500 icons, we will add an icon to greet our users when the dialog is opened.">Step 18: Icons</a><br/>
+</div>
+</div>
+<div class="relinfo"><div class="relinfotitle ">Related Information</div>
+<div><a class="link" href="36a5b130076e4b4aac2c27eebf324909.html">Reusing UI Parts: Fragments</a></div>
+<div><a class="link" href="04129b2798c447368f4c8922c3c33cd7.html">Instantiation of Fragments</a></div>
+</div>
+</div></div></div>
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+ var page_title="Step 17: Fragment Callbacks";
+
+        if (page_title !='' &&
+        parent.document.title != null) {
+ parent.document.title =
+          page_title;
+ } 
+ var
+        anchor = document.getElementById(location.hash.substring(+1)); if (typeof (anchor)
+        !='undefined' && anchor !=null){
+        var top = anchor.getBoundingClientRect().top; } 
+//-->
+</SCRIPT>
+</body>
+</html>

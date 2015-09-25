@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+
+
+
+
+<meta name="abstract" content="The JAWS screen reader offers list features that ease the app navigation by grouping and extracting all elements with similar behavior - for example, all headings or all tables. This leads to additional requirements when building apps with OpenUI5 controls."/>
+<meta name="description" content="The JAWS screen reader offers list features that ease the app navigation by grouping and extracting all elements with similar behavior - for example, all headings or all tables. This leads to additional requirements when building apps with OpenUI5 controls."/>
+
+<link rel="stylesheet" type="text/css" href="css/documentation.css"/>
+<title>Keyboard Usage of ARIA Role Mapped Controls</title>
+<!--[if lte IE 7]><style>
+      .codeblock{
+          overflow:visible;
+      }</style><![endif]-->
+
+  <script src="../../resources/sap/ui/thirdparty/jquery.js"></script>
+    <script src="../../resources/sap/ui/demokit/js/highlight-query-terms.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../resources/sap/ui/demokit/themes/base/highlight-query-terms.css" />
+    <script src="../../resources/sap/ui/demokit/js/google-code-prettify/run_prettify.js"></script>
+    <script src="../../resources/sap/ui/demokit/js/google-code-prettify/lang-css.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../resources/sap/ui/demokit/js/google-code-prettify/prettify.css" />
+  </head>
+<body class="sap_bluecrystal" id="loioe6cd5476193f48d1a273de990276c9bc">
+<div id="wrapper"><div id="container">
+<h1 class="title topictitle1">Keyboard Usage of ARIA Role Mapped Controls</h1>
+<div class="body conbody"><p class="shortdesc">The JAWS screen reader offers list features that ease the app navigation by grouping and
+		extracting all elements with similar behavior - for example, all headings or all tables.
+		This leads to additional requirements when building apps with <span class="ph"><span class="ph pname">OpenUI5</span></span> controls. </p>
+<div class="section"><div class="section_title">Keyboard Usage of Role Mapped Controls</div><div type="Keyboard Usage of Role Mapped Controls">
+			
+			<p class="p">The applied role names define implicitly the keyboard usage,for example an element
+				with <samp class="ph codeph">role=button</samp> can be activated with <kbd class="key">SPACE</kbd> and
+				<kbd class="key">ENTER</kbd> keys, navigation between controls with <samp class="ph codeph">role=menu
+					item</samp> is expected using <kbd class="key">Arrow keys</kbd> and so on. The screen
+				reader uses the role information to read the keyboard navigation hints.</p>
+
+			<div class="p">
+				<div class="note note"><span class="notetitle">Note</span> 
+					<div class="p">If you develop new SAPUI5 controls please note thefollowing:<ul class="ul" id="loioe6cd5476193f48d1a273de990276c9bc__ul_jny_vlk_1s"><li class="li">
+							<p class="p">Navigation with the JAWS Virtual Cursor cannot be the only
+								option. Keyboard navigation has to be implemented as well. </p>
+
+						</li>
+<li class="li">
+							<p class="p">All information about roles, states, and properties must be
+								present at the keyboard focus position and be spoken on control
+								focus</p>
+
+						</li>
+</ul>
+</div>
+
+				</div>
+
+			</div>
+
+		</div></div>
+<div class="section"><div class="section_title">Additional requirements for some control types</div><div type="Additional requirements for some control types">
+			
+			<p class="p">JAWS offers lists that group certain types ot elements. These lists ease and speed up
+				the navigation of the screen reader. Please note the following requirements for some
+				control types. </p>
+
+			<div class="p">
+				<ul class="ul" id="loioe6cd5476193f48d1a273de990276c9bc__ul_j2m_wp5_yr"><li class="li">
+						<p class="p"><span class="ph emphasis emphasis">Landmarks/Regions</span>
+						</p>
+
+						<ul class="ul" id="loioe6cd5476193f48d1a273de990276c9bc__ul_rzq_qq5_yr"><li class="li">
+								<p class="p">Special Regions must be indicated and labelled (navigation, Page
+									header, Main etc.) and  support the landmark list feature (Jaws <span class="keys"><kbd class="key">INSERT</kbd> + <kbd class="key">CONTROL</kbd> + <kbd class="key">R</kbd></span> landmark list or <kbd class="key">R</kbd> for direct navigation)</p>
+
+							</li>
+</ul>
+
+					</li>
+<li class="li">
+						<p class="p"><span class="ph emphasis emphasis">Headings</span></p>
+
+						<ul class="ul" id="loioe6cd5476193f48d1a273de990276c9bc__ul_y2d_vq5_yr"><li class="li">
+								<p class="p">The headings in a SAPUI5 app must have either aria <samp class="ph codeph">role=heading</samp> +
+										<samp class="ph codeph">aria-level</samp>or use <samp class="ph codeph">&lt;H1 –
+										H6&gt;</samp> HTML controls (JAWS <span class="keys"><kbd class="key">INSERT</kbd> + <kbd class="key">F6</kbd></span> headings list or <kbd class="key">H</kbd> for direct navigation) </p>
+
+							</li>
+<li class="li">
+								<p class="p">The panel heading hierarchy must be logical (for example, nested panels must have higher
+									hierarchy levels)</p>
+
+							</li>
+<li class="li">
+								<p class="p">Headings must be referenced by the containers they belong to
+									(using <samp class="ph codeph">aria-labelledby = “HEADING_ID”</samp>)</p>
+
+							</li>
+</ul>
+
+					</li>
+<li class="li">
+						<p class="p"><span class="ph emphasis emphasis">Links</span></p>
+
+						<ul class="ul" id="loioe6cd5476193f48d1a273de990276c9bc__ul_p43_gr5_yr"><li class="li">
+								<p class="p">Links in the in a SAPUI5 app must support the link list feature
+									(Jaws <span class="keys"><kbd class="key">INSERT</kbd> + <kbd class="key">F7</kbd></span> link list or <kbd class="key">L</kbd> for direct navigation) by
+									being true <samp class="ph codeph">&lt;a&gt;</samp> controls or having ARIA
+										<samp class="ph codeph">role=link</samp>.</p>
+
+							</li>
+</ul>
+
+					</li>
+<li class="li">
+						<p class="p"><span class="ph emphasis emphasis">Form Controls</span></p>
+
+						<ul class="ul" id="loioe6cd5476193f48d1a273de990276c9bc__ul_ymm_lr5_yr"><li class="li">
+								<p class="p">Form fields in the in a SAPUI5 app must support the form field
+									list feature (Jaws <span class="keys"><kbd class="key">INSERT</kbd> + <kbd class="key">F5</kbd></span> form field list) and show up as Input, Radio Buttons and
+									so on.</p>
+
+							</li>
+<li class="li">
+								<p class="p">Form fields must be correctly labelled and their List indicators
+									have to be distinctive</p>
+
+							</li>
+</ul>
+
+					</li>
+<li class="li">
+						<p class="p"><span class="ph emphasis emphasis">Lists</span></p>
+
+						<ul class="ul" id="loioe6cd5476193f48d1a273de990276c9bc__ul_lth_1s5_yr"><li class="li">
+								<p class="p">Lists have to implement a navigation concept that allows using
+									both arrow keys to go through list item entities, but also
+									focusing individual active sub-parts of a list item.</p>
+
+							</li>
+<li class="li">
+								<p class="p">Lists and list items should always be identified  using correctly
+									nested <samp class="ph codeph">&lt;ul&gt;</samp> and
+										<samp class="ph codeph">&lt;li&gt;</samp> markup or alternatively by ARIA
+										<samp class="ph codeph">list</samp> and <samp class="ph codeph">list item</samp>
+									roles.</p>
+
+							</li>
+<li class="li">
+								<p class="p">Sometimes list items may need special roles (for example <samp class="ph codeph">menu item</samp>).</p>
+
+							</li>
+<li class="li">
+								<p class="p">For lists with <span class="ph emphasis emphasis">n</span> items, speech output should always be "item number
+									of <span class="ph emphasis emphasis">n</span> items", no matter how many items are
+									visible. If <span class="ph emphasis emphasis">n</span> is not known, speech output
+									should always be "item number"</p>
+
+							</li>
+</ul>
+
+					</li>
+<li class="li">
+						<p class="p"><span class="ph emphasis emphasis">Tables</span></p>
+
+						<ul class="ul" id="loioe6cd5476193f48d1a273de990276c9bc__ul_flx_rs5_yr"><li class="li">
+								<p class="p">Data Tables must be coded as such (valid HTML) and must support
+									the table list feature (Jaws <span class="keys"><kbd class="key">INSERT</kbd> + <kbd class="key">CTRL</kbd> + <kbd class="key">T</kbd></span> table list or <kbd class="key">T</kbd> for direct navigation) .</p>
+
+							</li>
+<li class="li">Tables must have titles.</li>
+<li class="li">
+								<p class="p">Layout Tables for presentational purposes must be coded as such
+									(using ARIA <samp class="ph codeph">role=”presentation”</samp>). Then they are
+									not displayed in the Jaws table list.</p>
+
+							</li>
+<li class="li">
+								<p class="p">Editable and active cells may require special interaction models.
+									During navigation, all screen reader relevant information must
+									be available at the focus location.</p>
+
+							</li>
+<li class="li">
+								<p class="p">Tables have to properly associate and identify (even
+									hierarchical) row/column headers as their cells for the headers
+									act as labels for the table cells.</p>
+
+							</li>
+<li class="li">
+								<p class="p">In case there are no visible headers, but information is
+									organized in a table-like layout with individual “visual”
+									columns/cells, respective row/column identifier as part of the
+									cell info has to be given.</p>
+
+							</li>
+<li class="li">
+								<p class="p">For tables with <span class="ph emphasis emphasis">n</span> rows, speech output should always be "row number
+									of <span class="ph emphasis emphasis">n</span> rows", no matter how many rows are
+									visible. If <span class="ph emphasis emphasis">n</span> is not known, speech output
+									should always be "row number".</p>
+
+							</li>
+</ul>
+
+					</li>
+</ul>
+
+			</div>
+
+		</div></div>
+</div>
+</div></div>
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+ var page_title="Keyboard Usage of ARIA Role Mapped Controls";
+
+        if (page_title !='' &&
+        parent.document.title != null) {
+ parent.document.title =
+          page_title;
+ } 
+ var
+        anchor = document.getElementById(location.hash.substring(+1)); if (typeof (anchor)
+        !='undefined' && anchor !=null){
+        var top = anchor.getBoundingClientRect().top; } 
+//-->
+</SCRIPT>
+</body>
+</html>
